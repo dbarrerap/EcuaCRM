@@ -1,2 +1,2 @@
-# EcuaCRM
-A CRM Developed in ASP.NET/C#
+# ReservationsAPI
+A reservations API using ASP.NET/C# and Database Design on MySQL
