@@ -30,7 +30,11 @@ namespace ReservationsAPI
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReservationsAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "ReservationsAPI", 
+                    Version = "v1",
+                    Description = "An API to make reservations on registered Establishments."
+                });
             });
         }
 
