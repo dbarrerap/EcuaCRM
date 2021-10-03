@@ -39,7 +39,7 @@ namespace ReservationsAPI
             });
 
             services.AddDbContext<ReservationContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ReservationContext")));
+                    options.UseMySQL(Configuration.GetConnectionString("ReservationContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
