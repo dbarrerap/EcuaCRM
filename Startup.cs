@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ReservationsAPI
 {
@@ -36,6 +37,9 @@ namespace ReservationsAPI
                     Description = "An API to make reservations on registered Establishments."
                 });
             });
+
+            services.AddDbContext<ReservationContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ReservationContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
