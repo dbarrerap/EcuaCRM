@@ -1,3 +1,4 @@
+using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.Models;
 
@@ -25,6 +26,11 @@ namespace ReservationsAPI.Data
             model.Entity<EstablishmentContact>().ToTable("EstablishmentContact");
             model.Entity<Evento>().ToTable("Evento");
             model.Entity<Reservation>().ToTable("Reservation");
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySQL("server=localhost;port=3306;database=Reservations;user=dbarrera;password=");
         }
     }
 }
