@@ -11,11 +11,11 @@ namespace ReservationsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class User : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly ReservationContext _context;
 
-        public User(ReservationContext context)
+        public UsersController(ReservationContext context)
         {
             _context = context;
         }
