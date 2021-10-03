@@ -12,5 +12,8 @@ using ReservationsAPI.Models;
         {
         }
 
-        public DbSet<ReservationsAPI.Models.User> User { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Evento> Evento { get; set; }
+        public DbSet<Establishment> Establishment { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
     }
