@@ -19,4 +19,8 @@ using ReservationsAPI.Models;
         public DbSet<Evento> Evento { get; set; }
 
         public DbSet<Reservation> Reservation { get; set; }
+
+        public DbSet<Provider> Provider { get; set; }
+
+        public DbSet<Product> Product { get; set; }
     }
