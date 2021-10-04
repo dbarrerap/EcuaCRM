@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ReservationsAPI
 {
@@ -32,6 +33,13 @@ namespace ReservationsAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReservationsAPI", Version = "v1" });
             });
+
+            services.AddDbContext<ReservationsContext>(options =>
+                    options.UseMySql(
+                        Configuration.GetConnectionString("MariaDbContext"),
+                        ServerVersion.AutoDetect(Configuration.GetConnectionString("MariaDbContext"))
+                    )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
