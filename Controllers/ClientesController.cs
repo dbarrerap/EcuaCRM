@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.Models;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ReservationsAPI.Controllers
 {
@@ -29,11 +30,11 @@ namespace ReservationsAPI.Controllers
 
         // GET: api/Clientes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetCliente(int id)
+        public async Task<ActionResult<Cliente>> GetCliente(int id, string passwd)
         {
             var cliente = await _context.Cliente.FindAsync(id);
 
-            if (cliente == null)
+            if (cliente == null || !BC.Verify(passwd, cliente.Password))
             {
                 return NotFound();
             }
@@ -46,6 +47,7 @@ namespace ReservationsAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
+            cliente.Password = BC.HashPassword(cliente.Password);
             if (id != cliente.ID)
             {
                 return BadRequest();
@@ -77,6 +79,7 @@ namespace ReservationsAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
+            cliente.Password = BC.HashPassword(cliente.Password);
             _context.Cliente.Add(cliente);
             await _context.SaveChangesAsync();
 
